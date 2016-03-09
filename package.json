@@ -1,0 +1,22 @@
+{
+  "name": "karaokelist",
+  "version": "1.0.0",
+  "description": "a site to display a karaoke waiting list and song request form",
+  "main": "karaokelist.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SteveAndrewArcher/karaokelist.git"
+  },
+  "author": "Steve Archer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SteveAndrewArcher/karaokelist/issues"
+  },
+  "homepage": "https://github.com/SteveAndrewArcher/karaokelist#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}
