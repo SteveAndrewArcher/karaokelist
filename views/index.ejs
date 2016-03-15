@@ -1,0 +1,75 @@
+<html>
+<head>
+<title>Karaoke Waiting List</title>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<style>
+
+	body{
+		margin: auto;
+		width: 80%;
+		height: 80%;
+		font-family: Verdana, Geneva, sans-serif;
+	}
+	
+	
+
+</style>
+</head>
+
+<body>
+<h1 style="font-size:32px">Karaoke Waiting List</h1>
+<div id="waitlist" style="font-size:24px"></div>
+<p style="font-size:18px">Submit Your Song Request</p>
+<form id='requestform'>
+Name:<input type='text' id='name'><br>
+Song: <input type='text' id='song'><br>
+<button id="submitButton" onclick="postRequestToGoogle()" type="button">Submit Request</button>
+</form>
+<p id="thanks" style="font-size:18px"></p>
+</body>
+<script>
+function ListClient(){
+    
+	function setup(){
+	this.socket = new WebSocket('ws://localhost:3000')
+	}
+	
+	function subscribe(callback){
+		this.socket.onmessage = function(event){
+			callback(event.data)
+		}	
+	}
+	this.subscribe= subscribe
+	this.setup = setup
+}
+var listClient = new ListClient();
+listClient.setup();
+listClient.subscribe(function(data){
+	var array = data.toString().split("\n");
+	var display = "";
+	var counter = 1;
+	while(counter < array.length){
+		display += (array[counter] + "<br>");
+		counter = counter + (parseInt(array[counter+1])*7) + 2; 
+	}
+	
+	$('#waitlist').html(display);
+});
+function postRequestToGoogle(){
+	var name = $('#name').val();
+	var song = $('#song').val();
+
+	$.ajax({
+		url: "https://docs.google.com/forms/d/1IGyQVUPbqRg6nphU84phDglz3RYkXi5bPzb3ZA6ncuY/formResponse",
+		data: {"entry.1820099276": name, "entry.1337101126": song},
+		type: "POST",
+		dataType: "xml"
+	})
+	$('#name').val('');
+	$('#song').val('');
+	$('#thanks').html('Thanks for your request!');
+}
+
+</script>
+
+</html>

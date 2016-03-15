@@ -17,6 +17,11 @@
   },
   "homepage": "https://github.com/SteveAndrewArcher/karaokelist#readme",
   "dependencies": {
-    "express": "^4.13.4"
-  }
+    "debug": "^2.2.0",
+    "ejs": "^2.4.1",
+    "express": "^4.13.4",
+    "fs": "0.0.2",
+    "ws": "^1.0.1"
+  },
+  "devDependencies": {}
 }
