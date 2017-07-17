@@ -2,13 +2,11 @@ var express = require('express');
 var WebSocketServer = require('ws').Server;
 var fs = require('fs');
 var debug = require('debug');
-
-
 var app = express();
-//var router = express.Router();
 
 app.set('view engine', 'ejs');
 app.set('port', process.env.PORT || 3000);
+app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(req,res){
 	res.render('index');
