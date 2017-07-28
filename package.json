@@ -17,10 +17,13 @@
   },
   "homepage": "https://github.com/SteveAndrewArcher/karaokelist#readme",
   "dependencies": {
+    "body-parser": "^1.17.2",
     "debug": "^2.2.0",
     "ejs": "^2.4.1",
     "express": "^4.13.4",
     "fs": "0.0.2",
+    "nodemailer": "^4.0.1",
+    "nodemailer-sendgrid-transport": "^0.2.0",
     "ws": "^1.0.1"
   },
   "devDependencies": {}

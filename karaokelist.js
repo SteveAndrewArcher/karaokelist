@@ -3,13 +3,16 @@ var WebSocketServer = require('ws').Server;
 var fs = require('fs');
 var debug = require('debug');
 var app = express();
+var nodemailer = require('nodemailer');
+var sendgridTransport = require('nodemailer-sendgrid-transport');
+var bodyParser = require('body-parser');
 
-app.set('view engine', 'ejs');
 app.set('port', process.env.PORT || 3000);
 app.use(express.static(__dirname + '/public'));
+app.use(bodyParser.json());
 
 app.get('/', function(req,res){
-	res.render('index');
+	res.send('index.html');
 });
 
 var server = app.listen(app.get('port'), function() {
@@ -31,5 +34,33 @@ wss.on('connection', function(ws){
 		}
 	});
 	
+	
+});
+
+var transporter = nodemailer.createTransport(
+	sendgridTransport({
+		auth: {
+			api_user: 'steveandrewarcher',
+			api_key: 'nx74205d'
+		},
+	}));
+
+app.post("/sendReqToHost", function(req,res){
+	var name = req.body.name;
+	var song = req.body.song;
+	var mailOptions = {
+		from: '"sender" <steveandrewarcher@gmail.com>',
+		to: "archer.acting@gmail.com",
+		subject: 'Song Request',
+		text: name + "   " + song,
+	}
+	transporter.sendMail(mailOptions, (error,info) => {
+		if(error){
+			res.send("email failed")
+			return console.log(error);
+		}else{
+			res.send("success")
+		}
+	});
 	
 });
