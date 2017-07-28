@@ -1,0 +1,13 @@
+<div id="waitlist" class = "jumbotron" ng-controller="listDisplayCtrl">
+	<h3>Karaoke Waiting List</h3>
+	<ul id="singerlist">
+		<li ng-repeat = "x in display" ng-click = "showSongs=!showSongs">
+			{{x.name}}
+			<ul class="show-hide songlist" ng-show = "showSongs">
+				<li ng-repeat = "s in x.songs">
+					{{s}}
+				</li>
+			</ul>
+		</li>
+	</ul>
+</div>

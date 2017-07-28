@@ -1,0 +1,14 @@
+<div class="jumbotron" ng-controller="requestCtrl">
+	<h3>Submit Your Song Request</h3>
+	<form id='requestform'>
+		Name:<input type='text' id='name' ng-model="name"><br>
+		Song: <input type='text' id='song' ng-model="song"><br>
+		<button id="submitButton" ng-click="postRequestToGoogle()" type="button">Submit Request</button>
+		<div id="thanks" ng-if="requestSubmitted">
+			Thanks for your request!
+		</div>
+		<div id="sorry" ng-if="requestFailed">
+			Sorry, there was a problem sending your request, see the host in person to turn in your song.
+		</div>
+	</form>
+</div>
