@@ -40,8 +40,8 @@ wss.on('connection', function(ws){
 var transporter = nodemailer.createTransport(
 	sendgridTransport({
 		auth: {
-			api_user: 'steveandrewarcher',
-			api_key: 'nx74205d'
+			api_user: 'username', //REPLACE WITH MAIL SERVICE USERNAME
+			api_key: 'password' //REPLACE WITH MAIL SERVICE PASSWORD
 		},
 	}));
 
@@ -49,8 +49,8 @@ app.post("/sendReqToHost", function(req,res){
 	var name = req.body.name;
 	var song = req.body.song;
 	var mailOptions = {
-		from: '"sender" <steveandrewarcher@gmail.com>',
-		to: "archer.acting@gmail.com",
+		from: '"sender" <sender@email.com', //REPLACE WITH SENDER ADDRESS
+		to: "karaokehost@email.com", //REPLACE WITH HOST'S ADDRESS TO RECEIVE REQUESTS
 		subject: 'Song Request',
 		text: name + "   " + song,
 	}
